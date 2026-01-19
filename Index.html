@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Dear ❤️</title>
+
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at bottom, #0b0014, #000);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  /* Center Text */
+  .text {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    color: #ff4d6d;
+    text-shadow: 0 0 15px #ff4d6d, 0 0 30px #ff9aa2;
+    pointer-events: none;
+    z-index: 5;
+    line-height: 1.2;
+  }
+
+  /* Heart */
+  .heart {
+    position: absolute;
+    font-size: 26px;
+    animation: flyUp 4s ease-out forwards;
+    pointer-events: none;
+  }
+
+  @keyframes flyUp {
+    from {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-120vh) scale(0.3);
+      opacity: 0;
+    }
+  }
+
+  .hint {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    color: #ff9aa2;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="text">
+  To<br>
+ ❤️ My dear ....❤️
+</div>
+
+<div class="hint">Hearts are flowing… tap anywhere ❤️💜</div>
+
+<script>
+  const hearts = ["❤️", "💜"];
+  const colors = ["#ff4d6d", "#c77dff"];
+
+  /* CREATE HEART */
+  function createHeart(x, y) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.left = x + "px";
+    heart.style.top = y + "px";
+    heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+    heart.style.fontSize = Math.random() * 15 + 20 + "px";
+
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+  }
+
+  /* AUTO HEARTS */
+  setInterval(() => {
+    createHeart(
+      Math.random() * window.innerWidth,
+      window.innerHeight
+    );
+  }, 350);
+
+  /* TAP HEARTS */
+  function handleTap(e) {
+    const x = e.clientX || e.touches[0].clientX;
+    const y = e.clientY || e.touches[0].clientY;
+    createHeart(x, y);
+  }
+
+  document.addEventListener("click", handleTap);
+  document.addEventListener("touchstart", handleTap);
+</script>
+
+</body>
+</html>
